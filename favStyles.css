@@ -1,0 +1,112 @@
+body {
+    margin: 0;
+    padding: 0;
+    overflow: scroll;
+    background: url(images/kids.jpg);
+}
+
+
+.header{
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 95%;
+    padding: 20px 100px;
+    background:transparent;
+    display: flex;
+    align-items: center;
+    z-index: 100;
+    justify-content: space-between;
+    
+}
+
+#logo{
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+}
+.logo{
+   font-size: 32px;
+   color: aliceblue;
+   text-decoration: none;
+   font-weight: 700;
+   font-family:cursive
+}
+.navbar a {
+    position: relative;
+    font-size: 19px;
+    color: aliceblue;
+    font-weight: 500;
+    text-decoration: none;
+    margin: 40px;
+    transition: border-bottom 0.3s; /* Add a transition effect for the underline */
+    border-bottom: 2px solid transparent; /* Initially, the underline is transparent */
+}
+
+.navbar a:hover {
+    border-bottom: 2px solid white; /* When hovered, show the white underline */
+}
+
+/* favotite css below */
+
+.favorites-container{
+    background-color: #171821;
+  width: 90%;
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 3em 2em;
+  position: absolute;
+  transform: translateX(-50%);
+  left: 50%;
+  right: 50%;
+  top: 1em;
+  border-radius: 1em;
+
+}
+.character-image
+{
+    border-radius: 50%;
+
+}
+
+.character-card{
+    
+        background: rgb(192, 9, 9);
+        min-width: 300px;
+        max-width: 300px;
+        min-height: 300px;
+        display: inline-grid;
+        justify-content: space-around;
+        align-items: center;
+        align-content: space-around;
+        justify-items: center;
+        text-decoration: double;
+        max-width: 200px;
+        overflow-y: scroll;
+
+        
+}
+
+img{
+    height: 80px;
+    width: 80px;
+    border-radius: 50%;
+}
+
+#cards-group{
+    display:flex;
+    min-width: 300px;
+        justify-content:space-around;
+        align-items: center;
+        align-content: space-around;
+        justify-items: center;
+        text-decoration: double;
+        flex-wrap: wrap;
+        
+
+        
+}
+.container{
+    overflow-y: scroll;
+}
+   

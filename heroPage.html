@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="heroStyles.css"> <!-- Include your CSS file if needed -->
+
+    <title>Hero Page</title>
+</head>
+<body>
+    <!-- Header section -->
+    <header class="header">
+        <a href="index.html" class="logo">
+            <img id="logo" src="images/logo.jpg" alt="Super">
+        </a>
+        <nav class="navbar">
+            <a href="index.html">Super Hero Hunter</a>
+            <a href="favorite.html">Favorite</a>
+        </nav>
+    </header>
+
+    <!-- Container for displaying superhero character cards -->
+    <div class="container" id="home-list-ul">
+        <div id="home-list-ul" class="d-flex flex-wrap gap-2"></div>
+        <!-- Character cards will be displayed here -->
+    </div>
+
+    <script>
+        const ts = "1699111321077";
+const publicKey = "184378ac2ddfa1910377337cc908a978";
+const hashVal = "9c337723c188dccd2510316d870cbf59";
+const baseUrl = "https://gateway.marvel.com:443/v1/public/characters";
+
+        async function fetchMarvelCharacters() {
+            try {
+                const URL = `${baseUrl}?ts=${ts}&apikey=${publicKey}&hash=${hashVal}`;
+                const response = await fetch(URL);
+                const data = await response.json();
+                displayCharacters(data.data.results);
+            } catch (error) {
+                console.error("Error fetching Marvel characters:", error);
+            }
+        }
+
+        function displayCharacters(characters) {
+            const container = document.getElementById('home-list-ul');
+
+            characters.forEach(character => {
+                const card = createCharacterCard(character);
+                container.appendChild(card);
+            });
+        }
+
+        function createCharacterCard(character) {
+            const card = document.createElement('div');
+            card.className = "character-card";
+
+            const thumbnail = character.thumbnail;
+            const imageUrl = `${thumbnail.path}/portrait_xlarge.${thumbnail.extension}`;
+
+            card.innerHTML = `
+                <div class="card border border-5 border-dark bg-transparent text-white flex-grow-1" style="width: 18rem;">
+                    <img src="${imageUrl}" class="card-img-top" alt="${character.name}" style="height: 15rem">
+                    <div class="card-body d-flex flex-column align-items-center gap-2">
+                        <h5 class="card-title" style="color: #adb5bd;">${character.name}</h5>
+                        <span class="text-danger">Series: <span class="text-white">${character.series.available}</span></span>
+                        <span class="text-danger">Stories: <span class="text-white">${character.stories.available}</span></span>
+                        <a href="${character.urls[2] ? character.urls[2].url : '#'}" class="btn btn-dark bg-opacity-25" style="width: 90%">
+                            <span class="text-white">Comics: <span class="text-white">${character.comics.available}</span></span>
+                        </a>
+                    </div>
+                </div>
+            `;
+
+            return card;
+        }
+
+        // Load superhero character data
+        fetchMarvelCharacters();
+    </script>
+</body>
+</html>

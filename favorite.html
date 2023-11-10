@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="favStyles.css"> <!-- Include your CSS file if needed -->
+
+    <title>Favorites Page</title>
+</head>
+<body>
+    <!-- Header section -->
+    <header class="header">
+        <a href="index.html" class="logo">
+            <img id="logo" src="images/logo.jpg" alt="Super">
+        </a>
+        <nav class="navbar">
+            <a href="index.html">Super Hero Hunter</a>
+            <a href="heroPage.html">Hero Page</a>
+            
+            <a href="favorite.html">Favorite</a>
+        </nav>
+    </header>
+
+    <!-- Container for displaying favorite character cards -->
+    <div id="cards-group"></div>
+
+    <script>
+        // JavaScript code for handling favorite characters
+
+        // Select the container for favorite character cards
+        const favoritesContainer = document.getElementById("cards-group");
+        let favorites = [];
+
+        // Function to create a card for a favorite character
+        function createCharacterCard(character, index) {
+            const card = document.createElement("div");
+            card.classList.add("character-card");
+
+            const thumbnail = character.thumbnail;
+            const imageUrl = `${thumbnail.path}.${thumbnail.extension}`;
+
+            card.innerHTML = `
+                <h3>Favorite Character ${index}</h3>
+                <div class="character-image">
+                    <img src="${imageUrl}" alt="${character.name}">
+                </div>
+                <p>Name: ${character.name}</p>
+                <p>Description: ${character.description || "No description available"}</p>
+                <button class="delete-button" data-index="${index}">Delete</button>
+            `;
+
+            // Add event listener for the delete button
+            const deleteButton = card.querySelector(".delete-button");
+            deleteButton.addEventListener("click", () => {
+                const dataIndex = deleteButton.getAttribute("data-index");
+                removeFavorite(dataIndex);
+            });
+
+            return card;
+        }
+
+        // Function to remove a favorite character by index
+        function removeFavorite(index) {
+            index = parseInt(index);
+            if (!isNaN(index) && index >= 0 && index < favorites.length) {
+                favorites.splice(index, 1);
+                saveFavoritesToLocalStorage();
+                displayFavorites();
+            }
+        }
+
+        // Function to display favorite characters
+        function displayFavorites() {
+            favoritesContainer.innerHTML = "";
+            favorites.forEach((favorite, index) => {
+                const card = createCharacterCard(favorite, index);
+                favoritesContainer.appendChild(card);
+            });
+        }
+
+        // Function to load favorite characters from local storage
+        function loadFavoritesFromLocalStorage() {
+            const favoritesData = localStorage.getItem("favorites");
+            if (favoritesData) {
+                favorites = JSON.parse(favoritesData);
+            }
+        }
+
+        // Function to save favorite characters to local storage
+        function saveFavoritesToLocalStorage() {
+            localStorage.setItem("favorites", JSON.stringify(favorites));
+        }
+
+        // Initialize the favorites page when the window loads
+        function initFavoritesPage() {
+            loadFavoritesFromLocalStorage();
+            displayFavorites();
+        }
+
+        window.onload = initFavoritesPage;
+    </script>
+</body>
+</html>

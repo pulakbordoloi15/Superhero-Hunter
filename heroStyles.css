@@ -1,0 +1,112 @@
+body {
+    margin: 0;
+    padding: 0;
+    overflow:scroll;
+    background: url(images/Spider.jpg);
+}
+
+
+.header{
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 95%;
+    padding: 20px 100px;
+    background:transparent;
+    display: flex;
+    align-items: center;
+    z-index: 100;
+    justify-content: space-between;
+    
+}
+
+#logo{
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+}
+.logo{
+   font-size: 32px;
+   color: aliceblue;
+   text-decoration: none;
+   font-weight: 700;
+   font-family:cursive
+}
+.navbar a {
+    position: relative;
+    font-size: 19px;
+    color: aliceblue;
+    font-weight: 500;
+    text-decoration: none;
+    margin: 40px;
+    transition: border-bottom 0.3s; /* Add a transition effect for the underline */
+    border-bottom: 2px solid transparent; /* Initially, the underline is transparent */
+}
+
+.navbar a:hover {
+    border-bottom: 2px solid white; /* When hovered, show the white underline */
+}
+
+
+
+img{
+    height: 120px;
+    width: 100%;
+    
+}
+
+#home-list-ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
+    align-items: flex-start;
+    overflow-y:auto;
+
+  }
+  
+  /* Style the character card */
+  .card {
+    width: 18rem;
+    background-color: red; /* Red background */
+    
+    
+    border: 5px solid #000; /* Dark border with 5px width */
+    color: white;
+  }
+  
+  .card img {
+    height: 15rem;
+   
+    
+  }
+  
+  .card-title {
+    color: #101214;
+    
+  }
+  
+  .card-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+  }
+  
+  .btn {
+    width: 90%;
+    background-color: rgba(15, 10, 10, 0.25); /* Dark background with opacity */
+    border: none;
+  }
+  
+  /* Style the text within the card */
+  .text-danger {
+    color: rgb(141, 8, 8);
+    
+  }
+  
+  .text-white {
+    color: white;
+    
+  }
+
